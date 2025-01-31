@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'BROWSE CATEGORIES'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -33,80 +34,189 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  late TextEditingController _loginController; // controller for login field
-  late TextEditingController _passwordController; // controller for password field
-  String _imagePath = "images/question-mark.png"; // String variable to store image path
-  final String _correctPassword = "QWERTY123"; // Correct password to compare user input with
 
-  @override
-  void initState() {
-    super.initState();
-    _loginController = TextEditingController();
-    _passwordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _loginController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  // If user input is same as the correct password, image path is set to the
-  //light bulb image, else it is set to the stop sign image.
-  void _checkPassword(){
-    if(_passwordController.text == _correctPassword){
-      setState(() {
-        _imagePath = "images/idea.png";
-      });
-    } else {
-      setState(() {
-        _imagePath = "images/stop.png";
-      });
-    }
-
-  }
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text(widget.title),
-      ),
       body: Center(
 
         child: Column(
 
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: _loginController,
-              decoration: InputDecoration(
-                hintText: "Login",
-                border: OutlineInputBorder(),
-              ),
+          children: [
+            Text("BROWSE CATERGORIES", style: TextStyle (fontSize: 30.0, fontWeight: FontWeight.bold)),
+            Text("Not sure about exactly which recipe you're looking for? Do a search, or dive into out most popular categories.", style: TextStyle (fontSize: 20.0), textAlign: TextAlign.left), //align left
+            Text("BY MEAT", style: TextStyle (fontSize: 30.0, fontWeight: FontWeight.bold)), //align centre
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                // Beef Image with Text Overlay
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/BEEF.jpg'),
+                      radius: 50,
+                    ),
+                    Text(
+                      "Beef",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                // Chicken Image with Text Overlay
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/CHICKEN.jpg'),
+                      radius: 50,
+                    ),
+                    Text(
+                      "Chicken",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                // Pork Image with Text Overlay
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/PORK.jpg'),
+                      radius: 50,
+                    ),
+                    Text(
+                      "Pork",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                // Seafood Image with Text Overlay
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/SEAFOOD.jpg'),
+                      radius: 50,
+                    ),
+                    Text(
+                      "Seafood",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                hintText: "Password",
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
+            Text("BY COURSE", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Main Dishes.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Main Dishes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Salad.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Salad Recipes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Side Dishes.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Side Dishes", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Crockpot.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Crockpot", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
             ),
-            // on button press, the _checkPassword function is called
-            ElevatedButton(onPressed: _checkPassword, child: Text("Login")),
-            // displays the image based on what is stored in _imagePath variable
-            Image.asset(_imagePath, width: 300, height:300),
+            Text("BY DESSERT", style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Icecream.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Icecream", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Brownies.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Brownies", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Pies.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Pies", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage('images/Cookies.jpg'),
+                      radius: 50,
+                    ),
+                    Text("Cookies", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
-      ),
 
+      ),
     );
   }
+
+
 }
