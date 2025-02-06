@@ -37,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   late TextEditingController _loginController; // controller for login field
   late TextEditingController _passwordController; // controller for password field
+  String _imagePath = "images/question-mark.png"; // String variable to store image path
+  final String _correctPassword = "QWERTY123"; // Correct password to compare user input with
   late EncryptedSharedPreferences prefs;
   late SnackBar snackBar;
 
@@ -56,6 +58,22 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  // If user input is same as the correct password, image path is set to the
+  //light bulb image, else it is set to the stop sign image.
+  void _checkPassword(){
+    if(_passwordController.text == _correctPassword){
+      setState(() {
+        _imagePath = "images/idea.png";
+      });
+    } else {
+      setState(() {
+        _imagePath = "images/stop.png";
+      });
+    }
+
+  }
+
+  // Loads the saved username and password and give the user an option to undo
   void _loadSavedCredentials() async {
     var savedUsername = await prefs.getString('username');
     var savedPassword = await prefs.getString('password');
@@ -139,7 +157,13 @@ class _MyHomePageState extends State<MyHomePage> {
               obscureText: true,
             ),
             // on button press, the _checkPassword function is called
-            ElevatedButton(onPressed: _showAlertDialog, child: Text("Login")),
+            ElevatedButton(onPressed: () {
+              _showAlertDialog();
+              _checkPassword();
+            }, child: Text("Login")
+            ),
+            // displays the image based on what is stored in _imagePath variable
+            Image.asset(_imagePath, width: 300, height:300),
           ],
         ),
       ),
